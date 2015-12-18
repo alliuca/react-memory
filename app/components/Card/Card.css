@@ -1,0 +1,78 @@
+:root {
+  --cardWidth: 150px;
+  --cardHeight: 150px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  margin: 15px;
+  perspective: 1000;
+}
+
+.block.faceup .flipper {
+  transform: rotateY(180deg);
+}
+
+.flipper {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.front:after, .back:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: block;
+  width: calc(var(--cardWidth) - 10px);
+  height: calc(var(--cardHeight) - 10px);
+  border: 3px solid #000;
+  border-radius: 10px;
+}
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background: #5c0120;
+}
+
+.front:after {
+  border-color: #fff;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.back img {
+  width: calc(var(--cardWidth) - 50px);
+}
+
+.faceup {
+  /*background: transparent;*/
+}
+
+.matched {
+  border-color: red;
+}
