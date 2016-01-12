@@ -2,59 +2,34 @@ import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import CardActions from '../actions/CardActions';
 
-// var MemoryFileSystem = require("memory-fs");
-// var fs = new MemoryFileSystem();
-
 class CardStore {
   constructor() {
-    const numberOfCards = 8;
+    const req = require.context('../data/svg', true, /\.svg$/);
+    const svgs = req.keys();
+    let numberOfCards = 12;
     this.bindActions(CardActions);
     this.current = null;
     this.disabled = false;
-    this.cards = [
-      {
+    this.cards = [];
+
+    // generate cards pairs
+    for(let i=0; i<(numberOfCards/2); i++){
+      let fn = svgs[i].substring(2).replace('.svg', '');
+      this.cards.push({
         id: uuid.v4(),
-        rank: 'boston-celtics',
-        img: require('../data/svg/boston-celtics.svg'),
+        rank: fn,
+        img: require(`../data/svg/${fn}.svg`),
         shown: false,
         matched: false
-      },
-      {
+      });
+      this.cards.push({
         id: uuid.v4(),
-        rank: 'boston-celtics',
-        img: require('../data/svg/boston-celtics.svg'),
+        rank: fn,
+        img: require(`../data/svg/${fn}.svg`),
         shown: false,
         matched: false
-      },
-      {
-        id: uuid.v4(),
-        rank: 'chicago-bulls',
-        img: require('../data/svg/chicago-bulls.svg'),
-        shown: false,
-        matched: false
-      },
-      {
-        id: uuid.v4(),
-        rank: 'chicago-bulls',
-        img: require('../data/svg/chicago-bulls.svg'),
-        shown: false,
-        matched: false
-      },
-      {
-        id: uuid.v4(),
-        rank: 'golden-state-warriors',
-        img: require('../data/svg/golden-state-warriors.svg'),
-        shown: false,
-        matched: false
-      },
-      {
-        id: uuid.v4(),
-        rank: 'golden-state-warriors',
-        img: require('../data/svg/golden-state-warriors.svg'),
-        shown: false,
-        matched: false
-      }
-    ];
+      });
+    }
 
     // shuffle cards
     this.cards.sort(() => 0.5 - Math.random());

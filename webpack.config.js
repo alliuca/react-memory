@@ -5,9 +5,11 @@ var merge = require('webpack-merge');
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var Clean = require('clean-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
-const CSSLOADERS = 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss';
+const CSSLOADERS = 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss';
 const STYLE = (TARGET === 'start' || !TARGET) ? `style!${CSSLOADERS}` : ExtractTextPlugin.extract('style', CSSLOADERS);
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -24,7 +26,7 @@ var common = {
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: 'bundle.[hash].js'
   },
   module: {
     loaders: [
@@ -46,8 +48,10 @@ var common = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('style.css', { allChunks: true }),
-    new webpack.HotModuleReplacementPlugin()
+    new HtmlWebpackPlugin({
+      title: 'Memory',
+      template: 'index.html'
+    })
   ],
   postcss: function () {
     return [autoprefixer, customProperties, calc];
@@ -73,6 +77,15 @@ if(TARGET === 'start' || !TARGET) {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
+    ]
+  });
+}
+
+if(TARGET === 'build') {
+  module.exports = merge(common, {
+    plugins: [
+      new Clean([PATHS.build]),
+      new ExtractTextPlugin('style.[hash].css', { allChunks: true })
     ]
   });
 }
