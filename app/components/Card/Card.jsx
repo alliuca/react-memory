@@ -8,14 +8,13 @@ export default class Card extends React.Component {
     super(props);
   }
   render() {
-    const shown = this.props.shown;
-    const matched = this.props.matched;
+    const {shown, matched, img, rank, ...props} = this.props;
     return (
       <div className={this.getCardClass(shown, matched)} onClick={this.flipCard}>
         <div className={styles.flipper}>
           <div className={styles.front}></div>
           <div className={styles.back}>
-            <img src={this.props.img} alt={this.props.rank} />
+            <img src={img} alt={rank} />
           </div>
         </div>
       </div>

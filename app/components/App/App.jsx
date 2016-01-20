@@ -1,34 +1,31 @@
+import AltContainer from 'alt-container';
 import React from 'react';
+import Header from '../Header/Header.jsx';
+import AppStore from '../../stores/AppStore';
+import AppActions from '../../actions/AppActions';
 import Cards from '../Cards/Cards.jsx';
 import CardActions from '../../actions/CardActions';
 import CardStore from '../../stores/CardStore';
+// import 'normalize.css/normalize.css';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = CardStore.getState();
-  }
-  componentDidMount() {
-    CardStore.listen(this.storeChanged);
-  }
-  componentWillUnmount() {
-    CardStore.unlisten(this.storeChanged);
-  }
-  storeChanged = (state) => {
-    // Without a property initializer `this` wouldn't
-    // point at the right context (defaults to `undefined` in strict mode).
-    this.setState(state);
-  }
   render() {
-    const cards = this.state.cards;
-    const disabled = this.state.disabled;
     return (
       <div>
-        <Cards items={cards} disabled={disabled} onFlip={this.checkPair} />
+        <Header moves={AppStore.getState().moves} />
+        <AltContainer
+          stores={[AppStore, CardStore]}
+          inject={{
+            cards: () => CardStore.getState().cards,
+            disabled: () => CardStore.getState().disabled
+          }}>
+          <Cards onFlip={this.checkPair} />
+        </AltContainer>
       </div>
     );
   }
   checkPair = (id, rank) => {
     CardActions.update({id, rank});
+    AppActions.updateCounter();
   }
 };

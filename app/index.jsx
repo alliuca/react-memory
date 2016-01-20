@@ -1,4 +1,5 @@
 // import './main.css';
+import 'normalize.css/normalize.css';
 
 import 'array.prototype.findindex';
 

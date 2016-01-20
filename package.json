@@ -27,10 +27,12 @@
   },
   "dependencies": {
     "alt": "^0.18.1",
+    "alt-container": "^1.0.0",
     "alt-utils": "^1.0.0",
     "array.prototype.findindex": "^1.0.0",
     "autoprefixer": "^6.1.2",
     "node-uuid": "^1.4.7",
+    "normalize.css": "^3.0.3",
     "postcss-calc": "^5.0.0",
     "postcss-custom-properties": "^5.0.0",
     "react": "^0.14.3",

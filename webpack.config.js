@@ -14,7 +14,8 @@ const STYLE = (TARGET === 'start' || !TARGET) ? `style!${CSSLOADERS}` : ExtractT
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  data: path.join(__dirname, 'app/data')
+  data: path.join(__dirname, 'app/data'),
+  normalize: path.join(__dirname, 'node_modules/normalize.css')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -33,7 +34,7 @@ var common = {
       {
         test: /\.css$/,
         loader: STYLE,
-        include: PATHS.app
+        include: [PATHS.app, PATHS.normalize]
       },
       {
         test: /\.jsx?$/,
