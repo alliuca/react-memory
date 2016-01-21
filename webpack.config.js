@@ -14,7 +14,7 @@ const CSSLOADERS = 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]_
 const STYLE = (TARGET === 'start' || !TARGET) ? `style!${CSSLOADERS}` : ExtractTextPlugin.extract('style', CSSLOADERS);
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  dist: path.join(__dirname, 'dist'),
   data: path.join(__dirname, 'app/data'),
   normalize: path.join(__dirname, 'node_modules/normalize.css')
 };
@@ -28,7 +28,7 @@ const common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: PATHS.build,
+    path: PATHS.dist,
     filename: '[name].[hash].js'
   },
   module: {
@@ -98,7 +98,7 @@ if(TARGET === 'build' || TARGET === 'stats') {
       style: PATHS.app // but still getting style.js, looking into it
     },
     output: {
-      paths: PATHS.build,
+      paths: PATHS.dist,
       filename: '[name].[chunkhash].js',
       chunkFilename: '[chunkhash].js'
     },
@@ -112,7 +112,7 @@ if(TARGET === 'build' || TARGET === 'stats') {
       ]
     },
     plugins: [
-      new Clean([PATHS.build]),
+      new Clean([PATHS.dist]),
       new ExtractTextPlugin('style.[hash].css', {allChunks: true}),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
