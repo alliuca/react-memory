@@ -10,7 +10,7 @@ export default class Alert extends React.Component {
     return (
       <div className={(this.props.gameover ? styles.container + ' ' + styles.visible : styles.container)}>
         <div className={styles.block}>
-          You won! <a className={styles.restart} onClick={this.restart}>Restart</a>
+          You&apos;ve won in {this.props.moves} moves ! <a className={styles.restart} onClick={this.restart}>Restart</a>
         </div>
       </div>
     );

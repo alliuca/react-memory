@@ -33,7 +33,8 @@ export default class App extends React.Component {
         <AltContainer
           stores={[AppStore]}
           inject={{
-            gameover: () => AppStore.getState().gameover
+            gameover: () => AppStore.getState().gameover,
+            moves: () => AppStore.getState().moves
           }}>
           <Alert />
         </AltContainer>
