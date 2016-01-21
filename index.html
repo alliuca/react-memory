@@ -2,14 +2,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-    <link rel="stylesheet" href="{%=o.htmlWebpackPlugin.files.css[css] %}" />
-    {% } %}
-    <title>{%= o.htmlWebpackPlugin.options.title %}</title>
+    
+    <link rel="stylesheet" href="style.787dee9faa79cd753355.css" />
+    
+    <title>Memory</title>
   </head>
   <body>
-    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-    {% } %}
+    
+    <script src="manifest.40e7a873d04523a223ea.js"></script>
+    
+    <script src="vendor.a26bd2d2acb74fb9548f.js"></script>
+    
+    <script src="style.d4c413499018a7fe4e7a.js"></script>
+    
+    <script src="app.475907d00402e5b44d3a.js"></script>
+    
   </body>
 </html>
