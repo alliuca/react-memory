@@ -1,3 +1,3 @@
 import alt from '../libs/alt';
 
-export default alt.generateActions('reset', 'updateCounter');
+export default alt.generateActions('reset', 'updateCounter', 'alert');

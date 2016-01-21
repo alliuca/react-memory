@@ -36,8 +36,6 @@ class CardStore {
   }
   update({id, rank}) {
     const current = this.current;
-    // const currentIndex = this.cards.findIndex((c) => c.id === current.id);
-
     const cards = this.cards.map((card, index) => {
       if (card.id === id){
         this.setState({current: {i: index, el: card}});

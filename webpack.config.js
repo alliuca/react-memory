@@ -1,6 +1,7 @@
 var autoprefixer = require('autoprefixer');
 var calc = require('postcss-calc');
 var customProperties = require('postcss-custom-properties');
+var nested = require('postcss-nested');
 var merge = require('webpack-merge');
 var path = require('path');
 var webpack = require('webpack');
@@ -55,7 +56,7 @@ var common = {
     })
   ],
   postcss: function () {
-    return [autoprefixer, customProperties, calc];
+    return [autoprefixer, customProperties, calc, nested];
   }
 };
 
