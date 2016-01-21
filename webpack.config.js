@@ -18,28 +18,24 @@ const PATHS = {
   data: path.join(__dirname, 'app/data'),
   normalize: path.join(__dirname, 'node_modules/normalize.css')
 };
+const pkg = require('./package.json');
 
 process.env.BABEL_ENV = TARGET;
 
-var common = {
+const common = {
   entry: PATHS.app,
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.[hash].js'
+    filename: '[name].[hash].js'
   },
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loader: STYLE,
-        include: [PATHS.app, PATHS.normalize]
-      },
-      {
         test: /\.jsx?$/,
-        loader: 'babel',
+        loader: 'babel?cacheDirectory',
         include: PATHS.app
       },
       {
@@ -77,17 +73,58 @@ if(TARGET === 'start' || !TARGET) {
       host: process.env.HOST,
       port: 5555
     },
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: STYLE,
+          include: [PATHS.app, PATHS.normalize]
+        }
+      ]
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
   });
 }
 
-if(TARGET === 'build') {
+if(TARGET === 'build' || TARGET === 'stats') {
   module.exports = merge(common, {
+    entry: {
+      app: PATHS.app,
+      vendor: Object.keys(pkg.dependencies).filter(function(v) {
+        return (v !== 'alt-utils' && v !== 'autoprefixer' && v !== 'postcss-calc' && v !== 'postcss-custom-properties' && v !== 'postcss-nested');
+      }),
+      style: PATHS.app // but still getting style.js, looking into it
+    },
+    output: {
+      paths: PATHS.build,
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[chunkhash].js'
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: STYLE,
+          include: [PATHS.app, PATHS.normalize]
+        }
+      ]
+    },
     plugins: [
       new Clean([PATHS.build]),
-      new ExtractTextPlugin('style.[hash].css', { allChunks: true })
+      new ExtractTextPlugin('style.[hash].css', {allChunks: true}),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest']
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
     ]
   });
 }
