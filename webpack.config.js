@@ -37,11 +37,6 @@ const common = {
         test: /\.jsx?$/,
         loader: 'babel?cacheDirectory',
         include: PATHS.app
-      },
-      {
-        test: /\.svg$/,
-        loader: 'file?name=images/[name].[ext]?[hash]',
-        include: PATHS.data
       }
     ]
   },
@@ -79,6 +74,11 @@ if(TARGET === 'start' || !TARGET) {
           test: /\.css$/,
           loader: STYLE,
           include: [PATHS.app, PATHS.normalize]
+        },
+        {
+          test: /\.svg$/,
+          loader: 'file?name=images/[name].[ext]?[hash]',
+          include: PATHS.data
         }
       ]
     },
@@ -108,6 +108,14 @@ if(TARGET === 'build' || TARGET === 'stats') {
           test: /\.css$/,
           loader: STYLE,
           include: [PATHS.app, PATHS.normalize]
+        },
+        {
+          test: /\.svg$/,
+          loaders: [
+            'file?name=images/[name].[ext]?[hash]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ],
+          include: PATHS.data
         }
       ]
     },
