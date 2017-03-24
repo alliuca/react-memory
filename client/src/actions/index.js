@@ -27,6 +27,11 @@ export function resetGame(settings) {
       cards,
       pair: []
     }));
+    setTimeout(() => {
+      dispatch(setGame({
+        cards: cards.sort(() => 0.5 - Math.random())
+      }));
+    }, 500);
   }
 }
 

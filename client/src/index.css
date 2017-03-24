@@ -15,6 +15,14 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* ugly, will fix.. */
+html,
+body,
+body > div,
+body > div > div {
+  height: 100%;
+}
+
 :global .btn {
   padding: .6rem 1.1rem;
   background: #222;

@@ -8,11 +8,13 @@ import Cards from './Cards';
 import Nav from './Nav';
 import Alert from './Alert';
 
-const cardSubset = require('./../../../server/cards.json').slice(0, 6 / 2);
+const cardSubset = require('./../../../server/cards.json').slice(0, 12 / 2);
 const gameCards = [...cardSubset, ...cardSubset];
 
 class Game extends Component {
   componentWillMount() {
+    // shuffle up
+    gameCards.sort(() => 0.5 - Math.random());
     this.props.setGame({
       status: 'on',
       cards: gameCards.map(card =>
