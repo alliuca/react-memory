@@ -3,7 +3,7 @@
 .block {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   width: 80%;
   max-width: 890px;
   margin: auto;
@@ -13,7 +13,6 @@
   .block {
     display: grid;
     align-items: center;
-    justify-content: center;
     grid-gap: var(--cardGap);
     grid-template-columns: repeat(auto-fill, minmax(var(--cardWidth), var(--cardWidth)));
     width: 100%;
