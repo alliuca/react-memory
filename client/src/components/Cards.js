@@ -1,11 +1,19 @@
 import React from 'react';
-import Card from './Card';
 
-export default (props) => {
-  const cards = require('./../../../server/cards.json');
+import Card from './Card';
+import styles from './Cards.css';
+
+const Cards = (props) => {
   return (
-    <div>
-      {cards.map(card => <Card {...card} /> )}
+    <div className={styles.block}>
+      {props.cards.map((card) =>
+        <Card
+          key={card.id}
+          {...card}
+          onClick={() => props.onFlipCard(card)} />
+      )}
     </div>
   );
 };
+
+export default Cards;

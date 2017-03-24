@@ -1,19 +1,57 @@
 {
-  "name": "react-redux-memory",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-redux-min-starter",
+  "version": "1.0.0",
+  "description": "A simple starter to build React/Redux applications",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Luca Allievi",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ./test/test_null_compiler.js --recursive ./test",
+    "test:watch": "npm run test -- --watch"
+  },
   "devDependencies": {
-    "normalize.css": "^5.0.0",
-    "react-scripts": "0.9.3"
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
+    "css-loader": "^0.27.3",
+    "eslint": "^3.18.0",
+    "eslint-loader": "^1.6.3",
+    "eslint-plugin-react": "^6.10.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.10.1",
+    "html-webpack-plugin": "^2.28.0",
+    "jquery": "^3.2.0",
+    "jsdom": "^9.12.0",
+    "mocha": "^3.2.0",
+    "postcss-loader": "^1.3.3",
+    "react-addons-test-utils": "^15.4.2",
+    "react-hot-loader": "next",
+    "style-loader": "^0.14.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
+    "autoprefixer": "^6.7.7",
+    "cssnano": "^3.10.0",
+    "lodash": "^4.17.4",
+    "normalize.css": "^5.0.0",
+    "postcss-calc": "^5.3.1",
+    "postcss-custom-properties": "^5.0.2",
+    "postcss-import": "^9.1.0",
+    "postcss-nested": "^1.0.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^4.0.0",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }

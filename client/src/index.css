@@ -1,3 +1,13 @@
-body {
+@import 'normalize.css/normalize.css';
 
+html {
+  box-sizing:  border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
 }

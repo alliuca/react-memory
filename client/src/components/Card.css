@@ -1,7 +1,4 @@
-:root {
-  --cardWidth: 150px;
-  --cardHeight: 150px;
-}
+@import './../variables.css';
 
 .block {
   display: flex;
@@ -9,7 +6,6 @@
   justify-content: center;
   width: var(--cardWidth);
   height: var(--cardHeight);
-  margin: 15px;
   perspective: 1000;
   cursor: pointer;
 }
@@ -74,16 +70,12 @@
   width: calc(var(--cardWidth) - 50px);
 }
 
-.faceup {
-  /*background: transparent;*/
-}
-
 .matched {
   border-color: red;
 }
 
 .matched .back {
-  animation: matched 1.25s ease .5s;
+  animation: matched 1.25s ease .0s;
 }
 
 @keyframes matched {

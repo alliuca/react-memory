@@ -1,0 +1,22 @@
+@import './../variables.css';
+
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+  max-width: 890px;
+  margin: auto;
+}
+
+@supports (display: grid) {
+  .block {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(var(--cardWidth), var(--cardHeight)));
+    width: 90%;
+    margin: 2rem;
+  }
+}
