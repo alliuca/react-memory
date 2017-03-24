@@ -14,9 +14,9 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(var(--cardWidth), var(--cardHeight)));
-    width: 90%;
-    margin: 2rem;
+    grid-gap: var(--cardGap);
+    grid-template-columns: repeat(auto-fill, minmax(var(--cardWidth), var(--cardWidth)));
+    width: 100%;
+    margin: 2rem auto;
   }
 }

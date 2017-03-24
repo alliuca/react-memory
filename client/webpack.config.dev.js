@@ -5,9 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const calc = require('postcss-calc');
-const customProperties = require('postcss-custom-properties');
+const cssVariables = require('postcss-css-variables');
 const nested = require('postcss-nested');
 const postcssImport = require('postcss-import');
+const customMedia = require('postcss-custom-media');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -119,7 +120,8 @@ module.exports = {
                 autoprefixer({
                   browsers: [ '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' ]
                 }),
-                customProperties,
+                customMedia,
+                cssVariables,
                 calc,
                 nested
               ]

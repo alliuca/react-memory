@@ -1,4 +1,15 @@
 :root {
-  --cardWidth: 150px;
-  --cardHeight: 150px;
+  --cardWidth: 80px;
+  --cardHeight: 80px;
+  --cardGap: 1rem;
+}
+
+@custom-media --tablet (min-width: 768px);
+
+@media (--tablet) {
+  :root {
+    --cardWidth: 120px;
+    --cardHeight: 120px;
+    --cardGap: 1.25rem;
+  }
 }

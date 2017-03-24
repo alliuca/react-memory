@@ -7,7 +7,9 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const calc = require('postcss-calc');
-const customProperties = require('postcss-custom-properties');
+const cssVariables = require('postcss-css-variables');
+const postcssImport = require('postcss-import');
+const customMedia = require('postcss-custom-media');
 const cssnano = require('cssnano');
 
 const cssFilename = 'static/css/[name].[contenthash:8].css';
@@ -115,10 +117,12 @@ module.exports = {
                   options: {
                     ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
                     plugins: () => [
+                      postcssImport,
                       autoprefixer({
                         browsers: [ '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' ]
                       }),
-                      customProperties,
+                      customMedia,
+                      cssVariables,
                       calc,
                       cssnano
                     ]

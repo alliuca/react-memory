@@ -1,5 +1,6 @@
 import {
   SET_GAME,
+  SET_GAME_OVER,
   SET_CARD_VISIBILITY,
   ADD_CARD_TO_PAIR,
   CHECK_PAIR,
@@ -8,6 +9,7 @@ import {
 
 const INITIAL_STATE = {
   status: 'unset',
+  moves: 0,
   matches: [],
   cards: [],
   pair: []
@@ -35,10 +37,11 @@ export default function(state = INITIAL_STATE, action) {
     case CHECK_PAIR:
       if (state.pair.length === 2) {
         var matches = [...state.matches];
+        var moves = state.moves + 1;
         // we got a match
         if (state.pair[0].rank === state.pair[1].rank)
-          matches = [...matches, state.pair[0], state.pair[1]]
-        return Object.assign({}, state, { matches });
+          matches = [...matches, state.pair[0], state.pair[1]];
+        return Object.assign({}, state, { matches, moves });
       }
   }
 

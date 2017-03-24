@@ -1,6 +1,9 @@
 import {
   SET_GAME,
-  SET_CARD_VISIBILITY
+  SET_CARD_VISIBILITY,
+  ADD_CARD_TO_PAIR,
+  RESET_PAIR,
+  CHECK_PAIR
 } from './types';
 
 export function setGame(settings) {
@@ -10,29 +13,46 @@ export function setGame(settings) {
   }
 }
 
+export function resetGame(settings) {
+  return (dispatch, getState) => {
+    const { cards } = getState().game;
+    cards.map(card => {
+      card.shown = false;
+      card.matched = false;
+    });
+    dispatch(setGame({
+      status: 'on',
+      moves: 0,
+      matches: [],
+      cards,
+      pair: []
+    }));
+  }
+}
+
 export function setCardVisibility(card, filter) {
   return {
-    type: 'SET_CARD_VISIBILITY',
+    type: SET_CARD_VISIBILITY,
     payload: { card, filter }
   }
 }
 
 export function addCardToPair(card) {
   return {
-    type: 'ADD_CARD_TO_PAIR',
+    type: ADD_CARD_TO_PAIR,
     payload: card
   }
 }
 
 export function resetPair() {
   return {
-    type: 'RESET_PAIR'
+    type: RESET_PAIR
   }
 }
 
 export function checkPair() {
   return {
-    type: 'CHECK_PAIR'
+    type: CHECK_PAIR
   }
 }
 
@@ -46,13 +66,15 @@ export function flipCard(card) {
       const prevMatches = getState().game.matches;
       // check pair when there are two cards in the state
       dispatch(checkPair());
-      const { matches, pair } = getState().game;
+      const { cards, matches, pair } = getState().game;
       if (matches.length !== prevMatches.length)
         pair.forEach(match => dispatch(setCardVisibility(match, 'matched')));
       else if (pair.length > 1)
         pair.forEach(item => dispatch(setCardVisibility(item, 'shown')));
       if (pair.length > 1)
         dispatch(resetPair());
+      if (matches.length === cards.length)
+        dispatch(setGame({ status: 'over' }));
     }, 500);
   }
 }

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setGame, flipCard } from './../actions';
+import styles from './Game.css';
+import Header from './Header';
 import Cards from './Cards';
+import Nav from './Nav';
+import Alert from './Alert';
 
 const cardSubset = require('./../../../server/cards.json').slice(0, 6 / 2);
 const gameCards = [...cardSubset, ...cardSubset];
@@ -22,10 +26,13 @@ class Game extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.block}>
+        <Header />
         <Cards
           cards={this.props.game.cards}
           onFlipCard={this.props.flipCard} />
+        <Nav />
+        <Alert />
       </div>
     );
   }

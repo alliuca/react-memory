@@ -67,7 +67,7 @@
 }
 
 .back img {
-  width: calc(var(--cardWidth) - 50px);
+  height: calc(var(--cardWidth) - 30px);
 }
 
 .matched {
