@@ -16,6 +16,7 @@
     grid-gap: var(--cardGap);
     grid-template-columns: repeat(auto-fill, minmax(var(--cardWidth), var(--cardWidth)));
     width: 100%;
+    padding: 0 1rem;
     margin: 2rem auto;
   }
 }

@@ -73,7 +73,13 @@
 }
 
 .back img {
-  height: calc(var(--cardWidth) - 30px);
+  height: calc(var(--cardHeight) - 30px);
+}
+
+@media (--tablet) {
+  .back img {
+    height: calc(var(--cardHeight) - 50px);
+  }
 }
 
 .matched {
