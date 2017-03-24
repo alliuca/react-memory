@@ -1,26 +1,13 @@
-# React Redux App Starter
+# react-memory
 
-It includes:
+A dead simple Memory game built with Webpack, React/Redux and some PostCSS magic
 
-* Webpack 2
-  * in development, Webpack Dev Server + HMR (css/js)
-* React (+ React Router) and Redux
-* PostCSS
-  * [normalize.css](https://github.com/necolas/normalize.css)
-  * [autoprefixer](https://github.com/postcss/autoprefixer)
-  * [postcss-nested](https://github.com/postcss/postcss-nested)
-  * [postcss-calc](https://github.com/postcss/postcss-calc)
-  * [postcss-custom-properties](https://github.com/postcss/postcss-custom-properties)
-* ESLint
-* Mocha with Chai + JSDOM
-
-## Usage
-
-Install by running `yarn install`
-
-* dev mode: `yarn run dev`
-* build: `yarn run build`
-* test: `yarn run test` or `yarn run test:watch`
+[Demo](http://alliuca.github.io/react-memory/)
 
 ### TODO:
 - [x] add mocha test framework and assertion library
+- [ ] write tests for the client
+- [ ] refactor server code and add store syncronization
+- [ ] add socket.io based client/server communication
+- [ ] add screen to set up a game (number of cards, etc)
+- [ ] add leaderboard after all that?
