@@ -2,19 +2,17 @@
   display: inline-block;
   margin: 0 1rem;
   text-align: center;
-
-  & > span {
-    display: block;
-  }
 }
 
 .label {
+  display: block;
   margin-bottom: .2rem;
   font-size: .5rem;
   text-transform: uppercase;
 }
 
 .value {
+  display: block;
   font-size: 1.25rem;
   font-weight: bold;
 }
