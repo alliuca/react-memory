@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-min-starter",
+  "name": "memory-client",
   "version": "1.0.0",
   "description": "A simple starter to build React/Redux applications",
   "main": "index.js",
@@ -48,6 +48,7 @@
     "cssnano": "^4.1.8",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
+    "memory-server": "1.0.0",
     "postcss-calc": "^7.0.1",
     "postcss-css-variables": "^0.11.0",
     "postcss-custom-media": "^7.0.7",

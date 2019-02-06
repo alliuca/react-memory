@@ -1,0 +1,4 @@
+{
+  "private": true,
+  "workspaces": ["memory-client", "memory-server"]
+}

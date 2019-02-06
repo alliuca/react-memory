@@ -8,7 +8,7 @@ import Cards from './Cards';
 import Nav from './Nav';
 import Alert from './Alert';
 
-const cardSubset = require('./../../../server/cards.json').slice(0, 12 / 2);
+const cardSubset = require('memory-server/cards.json').slice(0, 12 / 2);
 const gameCards = [...cardSubset, ...cardSubset];
 
 class Game extends Component {
